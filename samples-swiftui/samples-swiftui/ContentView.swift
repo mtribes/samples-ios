@@ -9,18 +9,6 @@
 import SwiftUI
 import URLImage
 
-class ViewModel: ObservableObject {
-
-    @Published var welcomeText: String = ""
-    @Published var buttonTitle: String = ""
-    @Published var imageUrl = Constants.imgUrlSignOut
-    @Published var bannerMsg: String = ""
-
-    func buttonTap() {}
-    func onLogin() {}
-    func onSignOut() {}
-}
-
 struct ContentView: View {
 
     @ObservedObject var viewModel: ViewModel
@@ -54,7 +42,7 @@ extension ContentView {
             Spacer().frame(width: 20)
         }
         .frame(height: 80)
-        .background(Styles.headerColor)
+        .background(viewModel.headerColor)
     }
 }
 
@@ -62,13 +50,17 @@ extension ContentView {
 extension ContentView {
 
     var image: some View {
-        URLImage(viewModel.imageUrl) { proxy in
-            proxy.image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .padding()
+        if let url = viewModel.imageUrl {
+            return AnyView(URLImage(url) { proxy in
+                proxy.image
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .padding()
+            }
+            .frame(height: 50))
+        } else {
+            return AnyView(Text(""))
         }
-        .frame(height: 50)
     }
 }
 

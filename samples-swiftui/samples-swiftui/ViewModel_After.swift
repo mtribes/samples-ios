@@ -6,8 +6,9 @@
 //  Copyright © 2020 Leo. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 import Combine
+import Mtribes
 
 class ViewModel_After: ViewModel {
 
@@ -37,18 +38,44 @@ class ViewModel_After: ViewModel {
     }
 
     override func onLogin() {
-        user = fakeUser
+        let options = StartOptions(
+            userId: fakeUser.id,
+            fields: ["subscription": fakeUser.subscription]
+        )
+        Mtribes.session.start(options: options) { [weak self] _ in
+            self?.user = self?.fakeUser
+        }
     }
 
     override func onSignOut() {
-        user = nil
+        Mtribes.session.start() { [weak self] _ in
+            self?.user = nil
+        }
     }
 
     private func loginStatusChange(_ user: User?) {
         let login = user != nil
         welcomeText = login ? "Welcome \(user!.name)" : ""
         buttonTitle = login ? Constants.btnSignOut : Constants.btnLogin
-        imageUrl = login ? Constants.imgUrlLogin : Constants.imgUrlSignOut
-        bannerMsg = login ? Constants.bannerMember : Constants.bannerVisitor
+
+        let home = Mtribes.collections.homepage
+
+        let bgColor = home.header.data.bgColor
+        if let hex = bgColor?.value {
+            headerColor = Color(hex: hex, opacity: bgColor?.opacity)
+        } else {
+            headerColor = Styles.headerColor
+        }
+
+        home.body.forEach { exp in
+            switch exp {
+            case let hero as HomepageBodySection.Supported.Hero:
+                imageUrl = hero.data.source
+            case let banner as HomepageBodySection.Supported.Banner:
+                bannerMsg = banner.data.label ?? ""
+            default:
+                break
+            }
+        }
     }
 }
