@@ -46,7 +46,7 @@ class ViewModel_Before: ViewModel {
 
     private func loginStatusChange(_ user: User?) {
         let login = user != nil
-        welcomeText = login ? "Welcome \(user!.name)" : ""
+        welcomeText = login ? user!.name : ""
         buttonTitle = login ? Constants.btnSignOut : Constants.btnLogin
         imageUrl = login ? Constants.imgUrlLogin : Constants.imgUrlSignOut
         bannerMsg = login ? Constants.bannerMember : Constants.bannerVisitor

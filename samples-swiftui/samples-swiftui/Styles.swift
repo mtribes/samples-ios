@@ -12,7 +12,8 @@ import SwiftUI
 enum Styles {
 
     static let headerColor = Color(.sRGB, red: 170/255, green: 85/255, blue: 85/255, opacity: 1)
-    static let bannerColor = Color(.sRGB, red: 108/255, green: 116/255, blue: 130/255, opacity: 1)
+    static let bannerColor = Color(hex: "#F0EEF9")
+    static let primaryBackground = Color(hex: "#6F58C4")
 }
 
 // https://stackoverflow.com/a/56874327/11727285

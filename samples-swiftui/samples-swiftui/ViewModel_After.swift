@@ -55,7 +55,7 @@ class ViewModel_After: ViewModel {
 
     private func loginStatusChange(_ user: User?) {
         let login = user != nil
-        welcomeText = login ? "Welcome \(user!.name)" : ""
+        welcomeText = login ? user!.name : ""
         buttonTitle = login ? Constants.btnSignOut : Constants.btnLogin
 
         let home = Mtribes.collections.homepage

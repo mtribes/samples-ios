@@ -14,9 +14,11 @@ struct ContentView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        VStack(spacing: 100) {
+        VStack {
             header
+            Spacer().frame(height: 80)
             image
+            Spacer().frame(height: 100)
             banner
             Spacer()
         }
@@ -29,19 +31,20 @@ extension ContentView {
     var header: some View {
         HStack {
             Spacer().frame(width: 20)
-            Text(viewModel.welcomeText)
-            Spacer()
-            Button(action: {
-                self.viewModel.buttonTap()
-            }) {
-                Text(viewModel.buttonTitle)
-                    .foregroundColor(.black)
-                    .frame(width: 90, height: 32)
+            HStack(spacing: 20) {
+                Image("logo").resizable()
+                    .frame(width: 32, height: 32)
+                Text(viewModel.welcomeText)
+                    .foregroundColor(.white)
             }
-            .background(Color.white)
+            Spacer()
+            PrimaryButton(
+                action: viewModel.buttonTap,
+                title: viewModel.buttonTitle,
+                backgroundColor: .clear)
             Spacer().frame(width: 20)
         }
-        .frame(height: 80)
+        .frame(height: 56)
         .background(viewModel.headerColor)
     }
 }
@@ -50,16 +53,17 @@ extension ContentView {
 extension ContentView {
 
     var image: some View {
-        if let url = viewModel.imageUrl {
-            return AnyView(URLImage(url) { proxy in
-                proxy.image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .padding()
+        return ZStack {
+            if viewModel.imageUrl != nil {
+                URLImage(viewModel.imageUrl!) { proxy in
+                    proxy.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(height: 50)
+                }
+            } else {
+                Text("")
             }
-            .frame(height: 50))
-        } else {
-            return AnyView(Text(""))
         }
     }
 }
@@ -68,9 +72,36 @@ extension ContentView {
 extension ContentView {
 
     var banner: some View {
-        Text(viewModel.bannerMsg)
+        VStack {
+            PrimaryButton(
+                action: {},
+                title: viewModel.bannerMsg,
+                backgroundColor: Styles.primaryBackground,
+                borderColor: .clear)
+                .cornerRadius(4)
+        }
             .frame(maxWidth: .infinity, minHeight: 100, alignment: .center)
-            .font(.system(size: 28))
             .background(Styles.bannerColor)
+    }
+}
+
+struct PrimaryButton: View {
+
+    let action: () -> ()
+    let title: String
+    let backgroundColor: Color
+    var borderColor: Color = .white
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .frame(width: 88, height: 32)
+        }
+        .foregroundColor(.white)
+        .overlay(
+            RoundedRectangle(cornerRadius: 4)
+                .stroke(borderColor, lineWidth: 1)
+        )
+        .background(backgroundColor)
     }
 }
