@@ -12,8 +12,8 @@ public class HomepageBodySection: MTSection {
 
     init(id: String, parentId: String, broker: MTBroker) {
         let template = MTTemplate(
-            id: "EPBMZja",
-            v: "15239",
+            id: "5ozXdgW",
+            v: "16539",
             enabled: false
         )
         super.init(id: id, parentId: parentId, broker: broker, template: template)
@@ -21,8 +21,8 @@ public class HomepageBodySection: MTSection {
 
     public override var childTypes: [String: MTExperience.Type] {
         return [
-            "ygmrAEV": HeroExperience.self,
-            "Eb04Abp": BannerExperience.self
+            "VGd1POB": HeroExperience.self,
+            "NW0bo31": BannerExperience.self
         ]
     }
 }

@@ -60,7 +60,7 @@ class ViewModel_After: ViewModel {
 
         let home = Mtribes.collections.homepage
 
-        let bgColor = home.header.data.bgColor
+        let bgColor = home.header.data.backgroundColor
         if let hex = bgColor?.value {
             headerColor = Color(hex: hex, opacity: bgColor?.opacity)
         } else {

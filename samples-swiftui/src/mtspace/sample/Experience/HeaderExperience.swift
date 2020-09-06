@@ -17,8 +17,8 @@ public class HeaderExperience: MTExperience {
         super.init(id: id, parentId: parentId, broker: broker)
 
         let template = MTTemplate(
-            id: "O59eW5k",
-            v: "329",
+            id: "yDBpL8a",
+            v: "16551",
             enabled: false
         )
         register(template: template)
@@ -26,13 +26,16 @@ public class HeaderExperience: MTExperience {
 }
 
 public struct HeaderExperienceData: MTExperienceData {
-    public let bgColor: MTColor?
+    public let backgroundColor: MTColor?
+    public let gradientColor: MTColor?
 
     enum CodingKeys: String, CodingKey {
-        case bgColor = "1"
+        case backgroundColor = "1"
+        case gradientColor = "2"
     }
 
     public init() {
-        bgColor = nil
+        backgroundColor = nil
+        gradientColor = nil
     }
 }

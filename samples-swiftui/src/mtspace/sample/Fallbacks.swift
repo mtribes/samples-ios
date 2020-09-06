@@ -4,8 +4,8 @@ import Foundation
 import Mtribes
 
 let fallbacks = MTFallbacks(
-     v: 39820,
+     v: 76454,
      json: """
-     {"6E4l57r":{"on":true,"sid":"0vKvPXE","v":36108,"data":"{\\"1\\":\\"Banner\\"}","pid":"O84BJ45"},"O84BJ45":{"on":true,"sid":"0pjEpkY","v":34361,"se":[{"id":"o9ykq4x","et":"ygmrAEV"},{"id":"6E4l57r","et":"Eb04Abp"}]},"o9ykq4x":{"on":true,"sid":"pjRE7z2","v":85800,"data":"{\\"1\\":\\"https://pkw.us.astcdn.com/img/sample/1=x700.jpg\\"}","pid":"O84BJ45"},"xm48x4j":{"on":true,"sid":"Jz0a90g","v":26040,"data":"{\\"1\\":{\\"opacity\\":1,\\"value\\":\\"#a56\\"}}"}}
+     {"3q6rn6p":{"on":true,"sid":"ojBovxy","v":36469,"data":"{\\"1\\":\\"https://pkw.us.astcdn.com/img/sample/1=x700.jpg\\"}","pid":"yxE8Q2R"},"8x6DeEy":{"on":true,"sid":"9RDRWkq","v":17857,"data":"{\\"1\\":{\\"opacity\\":1,\\"value\\":\\"#6f58c4\\"},\\"2\\":{\\"opacity\\":1,\\"value\\":\\"#2363ae\\"}}"},"nLK0ZEJ":{"on":true,"sid":"2Po3pBb","v":35347,"data":"{\\"1\\":\\"Banner\\"}","pid":"yxE8Q2R"},"yxE8Q2R":{"on":true,"sid":"4pLMZlk","v":15790,"se":[{"id":"3q6rn6p","et":"VGd1POB"},{"id":"nLK0ZEJ","et":"NW0bo31"}]}}
      """
 )

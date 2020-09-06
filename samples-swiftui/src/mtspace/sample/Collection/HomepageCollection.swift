@@ -17,8 +17,8 @@ public class HomepageCollection: MTCollection {
         body = HomepageBodySection(id: childIds[1], parentId: id, broker: broker)
 
         let template = MTTemplate(
-            id: "dV8NLMD",
-            v: "15311",
+            id: "5Lb7ZGo",
+            v: "16538",
             enabled: false
         )
         broker.register(MTNode(

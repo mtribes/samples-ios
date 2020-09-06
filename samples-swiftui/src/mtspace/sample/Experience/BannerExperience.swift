@@ -17,8 +17,8 @@ public class BannerExperience: MTExperience {
         super.init(id: id, parentId: parentId, broker: broker)
 
         let template = MTTemplate(
-            id: "Eb04Abp",
-            v: "241",
+            id: "NW0bo31",
+            v: "16543",
             enabled: false
         )
         register(template: template)

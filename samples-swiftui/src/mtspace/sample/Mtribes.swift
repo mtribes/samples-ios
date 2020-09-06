@@ -13,14 +13,14 @@ public struct Mtribes {
     public static let session = client.session!
 
     /// Client instance of an mtribes Space.
-    public static let client = MTClient(apiKey: "1d38c0ce7b324b0888c20072aad00ba8", fallbacks: fallbacks)
+    public static let client = MTClient(apiKey: "6ce409e6860440b18f581233cd41b4ca", fallbacks: fallbacks)
 }
 
 public struct Collections {
 
     private static let broker = MTBroker(session: Mtribes.session)
 
-    public let homepage = HomepageCollection(id: "8b7ve40", childIds: ["xm48x4j", "O84BJ45"], broker: broker)
+    public let homepage = HomepageCollection(id: "wN23m6l", childIds: ["8x6DeEy", "yxE8Q2R"], broker: broker)
 
     fileprivate init() {}
 }

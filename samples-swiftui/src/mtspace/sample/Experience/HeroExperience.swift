@@ -17,8 +17,8 @@ public class HeroExperience: MTExperience {
         super.init(id: id, parentId: parentId, broker: broker)
 
         let template = MTTemplate(
-            id: "ygmrAEV",
-            v: "239",
+            id: "VGd1POB",
+            v: "16542",
             enabled: false
         )
         register(template: template)
