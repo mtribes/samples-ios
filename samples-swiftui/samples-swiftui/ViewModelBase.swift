@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ViewModel: ObservableObject {
 
@@ -14,7 +15,7 @@ class ViewModel: ObservableObject {
     @Published var buttonTitle: String = ""
     @Published var imageUrl: URL? = nil
     @Published var bannerMsg: String = ""
-    @Published var headerColor = Styles.headerColor
+    @Published var headerGradient = Gradient(colors: [Styles.headerColor])
 
     func buttonTap() {}
     func onLogin() {}

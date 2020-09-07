@@ -31,11 +31,12 @@ extension ContentView {
     var header: some View {
         HStack {
             Spacer().frame(width: 20)
-            HStack(spacing: 20) {
+            HStack(spacing: 16) {
                 Image("logo").resizable()
                     .frame(width: 32, height: 32)
                 Text(viewModel.welcomeText)
                     .foregroundColor(.white)
+                    .font(.system(size: 24, weight: .bold))
             }
             Spacer()
             PrimaryButton(
@@ -45,7 +46,7 @@ extension ContentView {
             Spacer().frame(width: 20)
         }
         .frame(height: 56)
-        .background(viewModel.headerColor)
+        .background(LinearGradient(gradient: viewModel.headerGradient, startPoint: .leading, endPoint: .trailing))
     }
 }
 

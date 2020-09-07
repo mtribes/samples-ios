@@ -48,7 +48,7 @@ class ViewModel_After: ViewModel {
     }
 
     override func onSignOut() {
-        Mtribes.session.start() { [weak self] _ in
+        Mtribes.session.start() { [weak self] result in
             self?.user = nil
         }
     }
@@ -61,10 +61,15 @@ class ViewModel_After: ViewModel {
         let home = Mtribes.collections.homepage
 
         let bgColor = home.header.data.backgroundColor
-        if let hex = bgColor?.value {
-            headerColor = Color(hex: hex, opacity: bgColor?.opacity)
+        let gradientColor = home.header.data.gradientColor
+        if let hex = bgColor?.value, let gradientHex = gradientColor?.value {
+            let colors = [
+                Color(hex: hex, opacity: bgColor?.opacity),
+                Color(hex: gradientHex, opacity: gradientColor?.opacity)
+            ]
+            headerGradient = Gradient(colors: colors)
         } else {
-            headerColor = Styles.headerColor
+            headerGradient = Gradient(colors: [Styles.headerColor])
         }
 
         home.body.forEach { exp in
