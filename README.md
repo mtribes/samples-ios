@@ -1,4 +1,4 @@
-# Mtribes Browser Samples
+# Mtribes iOS Samples
 
 A collection of small sample projects across a range of iOS applications to help
 guide `mtribes` integrations.
