@@ -25,7 +25,9 @@ class ViewModel_After: ViewModel {
     override init() {
         super.init()
         $user.receive(on: DispatchQueue.main)
-            .sink(receiveValue: loginStatusChange)
+            .sink { [weak self] user in
+                self?.loginStatusChange(user)
+            }
             .store(in: &disposables)
     }
 
@@ -42,15 +44,17 @@ class ViewModel_After: ViewModel {
             userId: fakeUser.id,
             fields: ["subscription": fakeUser.subscription]
         )
-        Mtribes.session.start(options: options) { [weak self] _ in
-            self?.user = self?.fakeUser
-        }
+        Mtribes.session.start(options: options)
+            .map { _ in self.fakeUser }
+            .assign(to: \.user, on: self)
+            .store(in: &disposables)
     }
 
     override func onSignOut() {
-        Mtribes.session.start() { [weak self] result in
-            self?.user = nil
-        }
+        Mtribes.session.start()
+            .map { _ in nil }
+            .assign(to: \.user, on: self)
+            .store(in: &disposables)
     }
 
     private func loginStatusChange(_ user: User?) {
