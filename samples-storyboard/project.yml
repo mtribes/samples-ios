@@ -1,8 +1,8 @@
-name: samples-swiftui
+name: samples-storyboard
 options:
   bundleIdPrefix: com.deltatre
 targets:
-  samples-swiftui:
+  samples-storyboard:
     sources: 
       - ./Sources
       - ./src
