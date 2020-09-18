@@ -17,8 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var heroImage: UIImageView!
     @IBOutlet weak var bannerButton: Button!
 
-//    let viewModel = ViewModel_Before()
-    let viewModel = ViewModel_After()
+    var viewModel: ViewModel!
 
     private let gradient = CAGradientLayer()
 
