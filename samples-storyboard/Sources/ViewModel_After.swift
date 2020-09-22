@@ -36,13 +36,13 @@ class ViewModel_After: ViewModel {
             userId: fakeUser.id,
             fields: ["subscription": fakeUser.subscription]
         )
-        Mtribes.session.start(options: options) { [weak self] _ in
+        Mtribes.session.startWithCallback(options: options) { [weak self] _ in
             self?.user = self?.fakeUser
         }
     }
 
     override func onSignOut() {
-        Mtribes.session.start() { [weak self] result in
+        Mtribes.session.startWithCallback() { [weak self] result in
             self?.user = nil
         }
     }
