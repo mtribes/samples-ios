@@ -24,11 +24,16 @@ class ViewModel_After: ViewModel {
 
     override init() {
         super.init()
+        Mtribes.client.sessionLock = false
         $user.receive(on: DispatchQueue.main)
+            .debounce(for: 0.01, scheduler: DispatchQueue.main)
             .sink { [weak self] user in
-                self?.loginStatusChange(user)
+                if Mtribes.session.ready {
+                    self?.loginStatusChange(user)
+                }
             }
             .store(in: &disposables)
+        subscribeChange()
     }
 
     override func buttonTap() {
@@ -53,6 +58,13 @@ class ViewModel_After: ViewModel {
     override func onSignOut() {
         Mtribes.session.start()
             .map { _ in nil }
+            .assign(to: \.user, on: self)
+            .store(in: &disposables)
+    }
+
+    private func subscribeChange() {
+        Mtribes.session.changed()
+            .map { _ in Mtribes.session.anonymous ? nil : self.fakeUser }
             .assign(to: \.user, on: self)
             .store(in: &disposables)
     }

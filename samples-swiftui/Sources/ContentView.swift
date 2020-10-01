@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import URLImage
+import KingfisherSwiftUI
 
 struct ContentView: View {
 
@@ -17,9 +17,9 @@ struct ContentView: View {
         VStack {
             header
             Spacer().frame(height: 80)
-            image
+            BodyImage(url: viewModel.imageUrl)
             Spacer().frame(height: 100)
-            banner
+            Banner(title: viewModel.bannerMsg)
             Spacer()
         }
     }
@@ -51,32 +51,28 @@ extension ContentView {
 }
 
 // MARK:- Image
-extension ContentView {
+struct BodyImage: View {
 
-    var image: some View {
-        return ZStack {
-            if viewModel.imageUrl != nil {
-                URLImage(viewModel.imageUrl!) { proxy in
-                    proxy.image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(height: 50)
-                }
-            } else {
-                Text("")
-            }
-        }
+    let url: URL?
+
+    var body: some View {
+        KFImage(url)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .frame(height: 50)
     }
 }
 
 // MARK:- Banner
-extension ContentView {
+struct Banner: View {
 
-    var banner: some View {
+    let title: String
+
+    var body: some View {
         VStack {
             PrimaryButton(
                 action: {},
-                title: viewModel.bannerMsg,
+                title: title,
                 backgroundColor: Styles.primaryBackground,
                 borderColor: .clear)
                 .cornerRadius(4)
@@ -96,7 +92,8 @@ struct PrimaryButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .frame(width: 88, height: 32)
+                .padding()
+                .frame(minWidth: 88, minHeight: 32, maxHeight: 32)
         }
         .foregroundColor(.white)
         .overlay(

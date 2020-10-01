@@ -23,6 +23,11 @@ class ViewModel_After: ViewModel {
         subscription: "gold"
     )
 
+    override init() {
+        super.init()
+        Mtribes.client.sessionLock = false
+    }
+
     override func buttonTap() {
         if user == nil {
             onLogin()
