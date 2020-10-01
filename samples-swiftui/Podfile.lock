@@ -5,12 +5,12 @@ DEPENDENCIES:
   - Mtribes
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Mtribes
 
 SPEC CHECKSUMS:
   Mtribes: 55d996f095cb4cabed7a7a79d0a3ead7ae2c8767
 
-PODFILE CHECKSUM: f648bba4991c51b371551ad3f0e25dea0da421bf
+PODFILE CHECKSUM: 9438c92a8ec41e813d62d96403bcf015962e297a
 
 COCOAPODS: 1.9.3

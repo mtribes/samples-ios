@@ -11,12 +11,13 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Kingfisher
+  trunk:
     - Mtribes
 
 SPEC CHECKSUMS:
   Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   Mtribes: 55d996f095cb4cabed7a7a79d0a3ead7ae2c8767
 
-PODFILE CHECKSUM: 6d95f672c0cbcc593269b9aaa7f1e5a9bcc99671
+PODFILE CHECKSUM: bfdeb63afa479b5b7b9d2746165ef796d6c24e5c
 
 COCOAPODS: 1.9.3
