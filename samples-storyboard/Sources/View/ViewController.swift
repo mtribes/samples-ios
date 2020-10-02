@@ -14,8 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var headerBackground: UIView!
     @IBOutlet weak var welcomeText: UILabel!
     @IBOutlet weak var signinButton: Button!
-    @IBOutlet weak var heroImage: UIImageView!
-    @IBOutlet weak var bannerButton: Button!
+    @IBOutlet weak var tableView: UITableView!
 
     var viewModel: ViewModel!
 
@@ -25,8 +24,19 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         viewModel.onSignOut()
-        heroImage.kf.indicatorType = .activity
+        configureTableView()
         view.layer.insertSublayer(gradient, at: 0)
+    }
+
+    private func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = .clear
+        tableView.allowsSelection = false
+        tableView.contentInset = .zero
+        tableView.register(UINib(nibName: "ImageCell", bundle: nil), forCellReuseIdentifier: ImageCell.identifier)
+        tableView.register(UINib(nibName: "BannerCell", bundle: nil), forCellReuseIdentifier: BannerCell.identifier)
     }
 
     @IBAction func signinBtnTap(_ sender: UIButton) {
@@ -36,8 +46,6 @@ class ViewController: UIViewController {
     private func updateUI() {
         welcomeText.text = viewModel.welcomeText
         signinButton.setTitle(viewModel.buttonTitle, for: .normal)
-        bannerButton.setTitle(viewModel.bannerMsg, for: .normal)
-        heroImage.kf.setImage(with: viewModel.imageUrl)
         applyGradient(for: headerBackground, colors: viewModel.headerColors)
     }
 
@@ -56,6 +64,67 @@ class ViewController: UIViewController {
 extension ViewController: ViewModelDelegate {
     func didFinishLoading() {
         updateUI()
+        tableView.reloadData()
     }
 }
 
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let item = viewModel.body[indexPath.section]
+        switch item.dataType {
+        case .text:
+            return 100
+        case .url:
+            let width = UIScreen.main.bounds.width
+            let aspectRatio: CGFloat = 16 / 9
+            return width / aspectRatio
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }
+}
+
+extension ViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.body.count
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = viewModel.body[indexPath.section]
+        switch item.dataType {
+        case .text:
+            let cell = tableView.dequeueReusableCell(withIdentifier: BannerCell.identifier, for: indexPath) as! BannerCell
+            cell.configure(item)
+            return cell
+        case .url:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
+            cell.configure(item)
+            return cell
+        }
+    }
+}
+
+protocol ResizableCell {
+    var height: CGFloat { get }
+}
+
+protocol ReusableCell {
+    static var identifier: String { get }
+}
+extension ReusableCell {
+    static var identifier: String {
+        String(describing: self)
+    }
+}

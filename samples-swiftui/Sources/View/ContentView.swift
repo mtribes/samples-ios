@@ -109,8 +109,8 @@ struct Banner: View {
                 borderColor: .clear)
                 .cornerRadius(4)
         }
-            .frame(maxWidth: .infinity, minHeight: 100, alignment: .center)
-            .background(Styles.bannerColor)
+        .frame(maxWidth: .infinity, minHeight: 100, alignment: .center)
+        .background(Styles.bannerColor)
     }
 }
 

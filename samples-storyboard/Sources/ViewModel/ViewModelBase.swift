@@ -16,8 +16,7 @@ class ViewModel {
 
     var welcomeText: String = ""
     var buttonTitle: String = ""
-    var imageUrl: URL? = nil
-    var bannerMsg: String = ""
+    var body: [BodyItem] = []
     var headerColors: [UIColor?] = [Styles.headerColor, Styles.headerColor]
 
     weak var delegate: ViewModelDelegate?

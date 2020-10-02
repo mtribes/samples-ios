@@ -66,18 +66,25 @@ class ViewModel_After: ViewModel {
             gradientColor?.uiColor
         ]
 
-        home.body.forEach { exp in
+        body = getBodyItems(for: home.body)
+        delegate?.didFinishLoading()
+    }
+
+    private func getBodyItems(for section: HomepageBodySection) -> [BodyItem] {
+        section.compactMap { exp in
             switch exp {
             case let hero as HomepageBodySection.Supported.Hero:
-                imageUrl = hero.data.source
+                return BodyItem(id: exp.id,
+                                dataType: .url,
+                                data: hero.data.source)
             case let banner as HomepageBodySection.Supported.Banner:
-                bannerMsg = banner.data.label ?? ""
+                return BodyItem(id: exp.id,
+                                dataType: .text,
+                                data: banner.data.label)
             default:
-                break
+                return nil
             }
         }
-
-        delegate?.didFinishLoading()
     }
 }
 
