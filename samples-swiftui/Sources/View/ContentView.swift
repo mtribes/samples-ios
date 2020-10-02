@@ -14,21 +14,20 @@ struct ContentView: View {
     @ObservedObject var viewModel: ViewModel
 
     var body: some View {
-        VStack {
-            header
-            Spacer().frame(height: 80)
-            BodyImage(url: viewModel.imageUrl)
-            Spacer().frame(height: 100)
-            Banner(title: viewModel.bannerMsg)
+        VStack(spacing: 0) {
+            Header(viewModel: viewModel)
+            SectionBody(list: $viewModel.body)
             Spacer()
         }
     }
 }
 
 // MARK:- Header
-extension ContentView {
+struct Header: View {
 
-    var header: some View {
+    @ObservedObject var viewModel: ViewModel
+
+    var body: some View {
         HStack {
             Spacer().frame(width: 20)
             HStack(spacing: 16) {
@@ -50,29 +49,62 @@ extension ContentView {
     }
 }
 
+struct SectionBody: View {
+
+    @Binding var list: [BodyItem]
+
+    var body: some View {
+        ScrollView {
+            VStack {
+                ForEach(list) { item in
+                    view(for: item)
+                }
+            }
+        }
+    }
+
+    private func view(for item: BodyItem) -> AnyView {
+        switch item.dataType {
+        case .text:
+            return AnyView(Banner(title: item.data as? String))
+        case .url:
+            return AnyView(BodyImage(url: item.data as? URL))
+        }
+    }
+}
+
 // MARK:- Image
 struct BodyImage: View {
 
-    let url: URL?
+    var url: URL?
+
+    private var aspectRatio: CGFloat = 16 / 9
+    private let screenWidth = UIScreen.main.bounds.width
+    private var imageHeight: CGFloat {
+        screenWidth / aspectRatio
+    }
+
+    init(url: URL?) {
+        self.url = url
+    }
 
     var body: some View {
         KFImage(url)
             .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(height: 50)
+            .frame(width: screenWidth, height: imageHeight)
     }
 }
 
 // MARK:- Banner
 struct Banner: View {
 
-    let title: String
+    var title: String?
 
     var body: some View {
         VStack {
             PrimaryButton(
                 action: {},
-                title: title,
+                title: title ?? "",
                 backgroundColor: Styles.primaryBackground,
                 borderColor: .clear)
                 .cornerRadius(4)

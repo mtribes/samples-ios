@@ -13,8 +13,7 @@ class ViewModel: ObservableObject {
 
     @Published var welcomeText: String = ""
     @Published var buttonTitle: String = ""
-    @Published var imageUrl: URL? = nil
-    @Published var bannerMsg: String = ""
+    @Published var body: [BodyItem] = []
     @Published var headerGradient = Gradient(colors: [Styles.headerColor])
 
     func buttonTap() {}

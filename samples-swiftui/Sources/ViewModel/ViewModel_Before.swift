@@ -48,7 +48,12 @@ class ViewModel_Before: ViewModel {
         let login = user != nil
         welcomeText = login ? user!.name : ""
         buttonTitle = login ? Constants.btnSignOut : Constants.btnLogin
-        imageUrl = login ? Constants.imgUrlLogin : Constants.imgUrlSignOut
-        bannerMsg = login ? Constants.bannerMember : Constants.bannerVisitor
+
+        let imageUrl = login ? Constants.imgUrlLogin : Constants.imgUrlSignOut
+        let bannerMsg = login ? Constants.bannerMember : Constants.bannerVisitor
+        body = [
+            BodyItem(id: "image", dataType: .url, data: imageUrl),
+            BodyItem(id: "banner", dataType: .text, data: bannerMsg)
+        ]
     }
 }

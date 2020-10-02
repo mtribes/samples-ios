@@ -11,6 +11,7 @@
 		02F3EF098894199A18AE80CD /* BannerExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8430EF0C5DDF8A4D422754 /* BannerExperience.swift */; };
 		043BDDDBB47DBBF6F43EDE23 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A086F705B1412A79701FC627 /* ContentView.swift */; };
 		2EF55E622525BAAF0039A8E4 /* KingfisherSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2EF55E612525BAAF0039A8E4 /* KingfisherSwiftUI */; };
+		2EF55E662525BC370039A8E4 /* BodyItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF55E652525BC370039A8E4 /* BodyItem.swift */; };
 		34BB47A9FBAB05CA448EC200 /* Pods_samples_swiftui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6B2223710F0A87CE92CF290 /* Pods_samples_swiftui.framework */; };
 		38F6C392967AF174D37C3225 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB0D8198794EEF7828EDFAF /* Preview Assets.xcassets */; };
 		3F90FB0DD614BA0E0C6A19D9 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 2C2CE02C2B717DE4CC66146C /* LICENSE.md */; };
@@ -40,8 +41,9 @@
 		2CB0D8198794EEF7828EDFAF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2E3B7A77251444CF0040D0A1 /* Mtribes.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Mtribes.xcframework; path = Frameworks/Mtribes.xcframework; sourceTree = "<group>"; };
 		2E8430EF0C5DDF8A4D422754 /* BannerExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerExperience.swift; sourceTree = "<group>"; };
+		2EF55E652525BC370039A8E4 /* BodyItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyItem.swift; sourceTree = "<group>"; };
 		347562D4E8A9B61724537226 /* HeaderExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderExperience.swift; sourceTree = "<group>"; };
-		4A83EE41C08BA967BC518E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		4A83EE41C08BA967BC518E1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		598299395CFB8E319F4EAC44 /* HeroExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroExperience.swift; sourceTree = "<group>"; };
 		7C5F14939E41523686619962 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		86EEB621E4ED8D1B08DE4F1E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -124,18 +126,10 @@
 		1366FA309AB57116259AD553 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				21C6923DD14CCCAD2EA52977 /* AppDelegate.swift */,
-				F0030BFDBC5B2C1ACE97082C /* Assets.xcassets */,
-				A7675FC9A636BB0533E7F709 /* Constants.swift */,
-				A086F705B1412A79701FC627 /* ContentView.swift */,
-				4A83EE41C08BA967BC518E1A /* Info.plist */,
-				2A501AED807BEBB16B0F7D40 /* LaunchScreen.storyboard */,
-				9D6D2630FAB1FD92D9BEF6DA /* SceneDelegate.swift */,
-				0A6AA74D3A69ECF64D10D652 /* Styles.swift */,
-				7C5F14939E41523686619962 /* User.swift */,
-				F5F1A664119C447A64805E9D /* ViewModel_After.swift */,
-				F7A6AB89BA55D23880D00FDE /* ViewModel_Before.swift */,
-				E183A0D4CA1F370F2101E375 /* ViewModelBase.swift */,
+				2EF55E6B2525BC760039A8E4 /* AppDelegate */,
+				2EF55E6A2525BC5E0039A8E4 /* ViewModel */,
+				2EF55E692525BC520039A8E4 /* View */,
+				2EF55E682525BC400039A8E4 /* Model */,
 				681AFC0DE091C160EC460204 /* Preview Content */,
 			);
 			path = Sources;
@@ -158,6 +152,47 @@
 				C6B2223710F0A87CE92CF290 /* Pods_samples_swiftui.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2EF55E682525BC400039A8E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A7675FC9A636BB0533E7F709 /* Constants.swift */,
+				7C5F14939E41523686619962 /* User.swift */,
+				2EF55E652525BC370039A8E4 /* BodyItem.swift */,
+				0A6AA74D3A69ECF64D10D652 /* Styles.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2EF55E692525BC520039A8E4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A086F705B1412A79701FC627 /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2EF55E6A2525BC5E0039A8E4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F5F1A664119C447A64805E9D /* ViewModel_After.swift */,
+				F7A6AB89BA55D23880D00FDE /* ViewModel_Before.swift */,
+				E183A0D4CA1F370F2101E375 /* ViewModelBase.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2EF55E6B2525BC760039A8E4 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				21C6923DD14CCCAD2EA52977 /* AppDelegate.swift */,
+				F0030BFDBC5B2C1ACE97082C /* Assets.xcassets */,
+				4A83EE41C08BA967BC518E1A /* Info.plist */,
+				2A501AED807BEBB16B0F7D40 /* LaunchScreen.storyboard */,
+				9D6D2630FAB1FD92D9BEF6DA /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
 			sourceTree = "<group>";
 		};
 		3F99FCC6C43E7CC6C5649BDE /* Pods */ = {
@@ -330,6 +365,7 @@
 				02F3EF098894199A18AE80CD /* BannerExperience.swift in Sources */,
 				023933CF2FCC40179B92A691 /* Constants.swift in Sources */,
 				043BDDDBB47DBBF6F43EDE23 /* ContentView.swift in Sources */,
+				2EF55E662525BC370039A8E4 /* BodyItem.swift in Sources */,
 				BD63D9BD4A455D1889C5A6BD /* Fallbacks.swift in Sources */,
 				9D60361A254D284A5FDEDDB1 /* HeaderExperience.swift in Sources */,
 				BC717B910A870A31732F4D9A /* HeroExperience.swift in Sources */,
@@ -365,7 +401,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = Sources/AppDelegate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -383,7 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = Sources/Info.plist;
+				INFOPLIST_FILE = Sources/AppDelegate/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
