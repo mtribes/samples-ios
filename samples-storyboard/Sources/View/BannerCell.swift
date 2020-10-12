@@ -7,13 +7,9 @@
 
 import UIKit
 
-class BannerCell: UITableViewCell, ReusableCell, ResizableCell {
+class BannerCell: UITableViewCell, ReusableCell {
 
     @IBOutlet weak var bannerButton: Button!
-
-    var height: CGFloat {
-        return 100
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

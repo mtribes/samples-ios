@@ -8,13 +8,9 @@
 import UIKit
 import Kingfisher
 
-class ImageCell: UITableViewCell, ReusableCell, ResizableCell {
+class ImageCell: UITableViewCell, ReusableCell {
 
     @IBOutlet weak var heroImage: UIImageView!
-
-    var height: CGFloat {
-        return 210
-    }
 
     func configure(_ item: BodyItem) {
         guard item.dataType == .url else { return }

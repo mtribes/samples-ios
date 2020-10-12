@@ -43,6 +43,14 @@ class ViewController: UIViewController {
         viewModel.buttonTap()
     }
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        coordinator.animate { _ in
+            self.applyGradient(for: self.headerBackground, colors: self.viewModel.headerColors)
+        }
+
+    }
+
     private func updateUI() {
         welcomeText.text = viewModel.welcomeText
         signinButton.setTitle(viewModel.buttonTitle, for: .normal)
@@ -75,7 +83,8 @@ extension ViewController: UITableViewDelegate {
         case .text:
             return 100
         case .url:
-            let width = UIScreen.main.bounds.width
+            let safeArea = view.safeAreaInsets
+            let width = view.bounds.width - safeArea.left - safeArea.right
             let aspectRatio: CGFloat = 16 / 9
             return width / aspectRatio
         }
@@ -114,10 +123,6 @@ extension ViewController: UITableViewDataSource {
             return cell
         }
     }
-}
-
-protocol ResizableCell {
-    var height: CGFloat { get }
 }
 
 protocol ReusableCell {
