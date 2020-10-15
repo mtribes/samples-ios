@@ -24,4 +24,5 @@ class ViewModel {
     func buttonTap() {}
     func onLogin() {}
     func onSignOut() {}
+    func observeSession() {}
 }

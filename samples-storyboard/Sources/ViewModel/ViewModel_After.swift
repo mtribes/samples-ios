@@ -52,6 +52,14 @@ class ViewModel_After: ViewModel {
         }
     }
 
+    override func observeSession() {
+        Mtribes.session.changedWithCallback(owner: self) { [weak self] event in
+            if event.status == .primed {
+                self?.user = Mtribes.session.anonymous ? nil : self?.fakeUser
+            }
+        }
+    }
+
     private func loginStatusChange(_ user: User?) {
         let login = user != nil
         welcomeText = login ? user!.name : ""

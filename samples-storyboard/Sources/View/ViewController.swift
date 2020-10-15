@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         viewModel.onSignOut()
+        viewModel.observeSession()
         configureTableView()
         view.layer.insertSublayer(gradient, at: 0)
     }
