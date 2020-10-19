@@ -15,7 +15,7 @@ struct ContentView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            Header(viewModel: viewModel)
+            HeaderView(viewModel: viewModel)
             SectionBody(list: $viewModel.body)
             Spacer()
         }
@@ -23,7 +23,7 @@ struct ContentView: View {
 }
 
 // MARK:- Header
-struct Header: View {
+struct HeaderView: View {
 
     @ObservedObject var viewModel: ViewModel
 
@@ -33,19 +33,19 @@ struct Header: View {
             HStack(spacing: 16) {
                 Image("logo").resizable()
                     .frame(width: 32, height: 32)
-                Text(viewModel.welcomeText)
+                Text(viewModel.header.title)
                     .foregroundColor(.white)
                     .font(.system(size: 24, weight: .bold))
             }
             Spacer()
             PrimaryButton(
                 action: viewModel.buttonTap,
-                title: viewModel.buttonTitle,
+                title: viewModel.header.btnTitle,
                 backgroundColor: .clear)
             Spacer().frame(width: 20)
         }
         .frame(height: 56)
-        .background(LinearGradient(gradient: viewModel.headerGradient, startPoint: .leading, endPoint: .trailing))
+        .background(LinearGradient(gradient: viewModel.header.gradient, startPoint: .leading, endPoint: .trailing))
     }
 }
 
@@ -65,9 +65,9 @@ struct SectionBody: View {
 
     private func view(for item: BodyItem) -> AnyView {
         switch item.dataType {
-        case .text:
+        case .banner:
             return AnyView(Banner(title: item.data as? String))
-        case .url:
+        case .hero:
             return AnyView(BodyImage(url: item.data as? URL))
         }
     }

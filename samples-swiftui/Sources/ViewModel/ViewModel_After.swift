@@ -14,6 +14,10 @@ class ViewModel_After: ViewModel {
 
     @Published private var user: User?
 
+    private var signedIn: Bool {
+        return !Mtribes.session.anonymous
+    }
+
     private let fakeUser = User(
         id: "2id2f459d2s5",
         name: "Olivia",
@@ -70,37 +74,43 @@ class ViewModel_After: ViewModel {
     }
 
     private func loginStatusChange(_ user: User?) {
-        let login = user != nil
-        welcomeText = login ? user!.name : ""
-        buttonTitle = login ? Constants.btnSignOut : Constants.btnLogin
-
         let home = Mtribes.collections.homepage
 
-        let bgColor = home.header.data.backgroundColor
-        let gradientColor = home.header.data.gradientColor
+        header = getHeader(for: home.header)
+        body = getBodyItems(for: home.body)
+    }
+
+    private func getHeader(for exp: HeaderExperience) -> Header {
+        let bgColor = exp.data.backgroundColor
+        let gradientColor = exp.data.gradientColor
+        let gradient: Gradient
         if let hex = bgColor?.value, let gradientHex = gradientColor?.value {
             let colors = [
                 Color(hex: hex, opacity: bgColor?.opacity),
                 Color(hex: gradientHex, opacity: gradientColor?.opacity)
             ]
-            headerGradient = Gradient(colors: colors)
+            gradient = Gradient(colors: colors)
         } else {
-            headerGradient = Gradient(colors: [Styles.headerColor])
+            gradient = Gradient(colors: [Styles.headerColor])
         }
-
-        body = getBodyItems(for: home.body)
+        return Header(id: exp.id,
+                      title: signedIn ? "Hi \(fakeUser.name)" : "Welcome",
+                      btnTitle: signedIn ? Constants.btnSignOut : Constants.btnLogin,
+                      enabled: exp.enabled,
+                      gradient: gradient)
     }
 
     private func getBodyItems(for section: HomepageBodySection) -> [BodyItem] {
         section.compactMap { exp in
+            guard exp.enabled else { return nil }
             switch exp {
             case let hero as HomepageBodySection.Supported.Hero:
                 return BodyItem(id: exp.id,
-                         dataType: .url,
+                         dataType: .hero,
                          data: hero.data.source)
             case let banner as HomepageBodySection.Supported.Banner:
                 return BodyItem(id: exp.id,
-                         dataType: .text,
+                         dataType: .banner,
                          data: banner.data.label)
             default:
                 return nil

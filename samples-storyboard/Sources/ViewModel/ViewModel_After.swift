@@ -83,15 +83,16 @@ class ViewModel_After: ViewModel {
 
     private func getBodyItems(for section: HomepageBodySection) -> [BodyItem] {
         section.compactMap { exp in
+            guard exp.enabled else { return nil }
             switch exp {
             case let hero as HomepageBodySection.Supported.Hero:
-                return hero.enabled ? BodyItem(id: exp.id,
-                                               dataType: .hero,
-                                               data: hero.data.source) : nil
+                return BodyItem(id: exp.id,
+                                dataType: .hero,
+                                data: hero.data.source)
             case let banner as HomepageBodySection.Supported.Banner:
-                return banner.enabled ? BodyItem(id: exp.id,
-                                                 dataType: .banner,
-                                                 data: banner.data.label) : nil
+                return BodyItem(id: exp.id,
+                                dataType: .banner,
+                                data: banner.data.label)
             default:
                 return nil
             }

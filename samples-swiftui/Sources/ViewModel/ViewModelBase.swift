@@ -11,10 +11,8 @@ import SwiftUI
 
 class ViewModel: ObservableObject {
 
-    @Published var welcomeText: String = ""
-    @Published var buttonTitle: String = ""
+    @Published var header: Header = Header()
     @Published var body: [BodyItem] = []
-    @Published var headerGradient = Gradient(colors: [Styles.headerColor])
 
     func buttonTap() {}
     func onLogin() {}

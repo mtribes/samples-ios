@@ -12,6 +12,7 @@ import SwiftUI
 enum Styles {
 
     static let headerColor = Color(.sRGB, red: 170/255, green: 85/255, blue: 85/255, opacity: 1)
+    static let defaultGradient = Gradient(colors:[Color(hex: "#6F58C4"), Color(hex: "#6200EE")])
     static let bannerColor = Color(hex: "#F0EEF9")
     static let primaryBackground = Color(hex: "#6F58C4")
 }
