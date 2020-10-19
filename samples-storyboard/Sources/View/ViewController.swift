@@ -11,7 +11,7 @@ import Kingfisher
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var headerBackground: UIView!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var welcomeText: UILabel!
     @IBOutlet weak var signinButton: Button!
     @IBOutlet weak var tableView: UITableView!
@@ -47,15 +47,16 @@ class ViewController: UIViewController {
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate { _ in
-            self.applyGradient(for: self.headerBackground, colors: self.viewModel.headerColors)
+            self.applyGradient(for: self.headerView, colors: self.viewModel.header.colors)
         }
 
     }
 
     private func updateUI() {
-        welcomeText.text = viewModel.welcomeText
-        signinButton.setTitle(viewModel.buttonTitle, for: .normal)
-        applyGradient(for: headerBackground, colors: viewModel.headerColors)
+        headerView.isHidden = !viewModel.header.enabled
+        welcomeText.text = viewModel.header.title
+        signinButton.setTitle(viewModel.header.btnTitle, for: .normal)
+        applyGradient(for: headerView, colors: viewModel.header.colors)
     }
 
     private func applyGradient(for view: UIView, colors: [UIColor?]) {
@@ -81,9 +82,9 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let item = viewModel.body[indexPath.section]
         switch item.dataType {
-        case .text:
+        case .banner:
             return 100
-        case .url:
+        case .hero:
             let safeArea = view.safeAreaInsets
             let width = view.bounds.width - safeArea.left - safeArea.right
             let aspectRatio: CGFloat = 16 / 9
@@ -114,11 +115,11 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = viewModel.body[indexPath.section]
         switch item.dataType {
-        case .text:
+        case .banner:
             let cell = tableView.dequeueReusableCell(withIdentifier: BannerCell.identifier, for: indexPath) as! BannerCell
             cell.configure(item)
             return cell
-        case .url:
+        case .hero:
             let cell = tableView.dequeueReusableCell(withIdentifier: ImageCell.identifier, for: indexPath) as! ImageCell
             cell.configure(item)
             return cell

@@ -11,6 +11,10 @@ import Mtribes
 
 class ViewModel_After: ViewModel {
 
+    private var signedIn: Bool {
+        return !Mtribes.session.anonymous
+    }
+
     private var user: User? {
         didSet {
             loginStatusChange(user)
@@ -22,11 +26,6 @@ class ViewModel_After: ViewModel {
         name: "Olivia",
         subscription: "gold"
     )
-
-    override init() {
-        super.init()
-        Mtribes.client.sessionLock = false
-    }
 
     override func buttonTap() {
         if user == nil {
@@ -61,34 +60,38 @@ class ViewModel_After: ViewModel {
     }
 
     private func loginStatusChange(_ user: User?) {
-        let login = user != nil
-        welcomeText = login ? user!.name : ""
-        buttonTitle = login ? Constants.btnSignOut : Constants.btnLogin
-
         let home = Mtribes.collections.homepage
 
-        let bgColor = home.header.data.backgroundColor
-        let gradientColor = home.header.data.gradientColor
-        headerColors = [
+        header = getHeader(for: home.header)
+        body = getBodyItems(for: home.body)
+        delegate?.didFinishLoading()
+    }
+
+    private func getHeader(for exp: HeaderExperience) -> Header {
+        let bgColor = exp.data.backgroundColor
+        let gradientColor = exp.data.gradientColor
+        let colors = [
             bgColor?.uiColor,
             gradientColor?.uiColor
         ]
-
-        body = getBodyItems(for: home.body)
-        delegate?.didFinishLoading()
+        return Header(id: exp.id,
+                      title: signedIn ? "Hi \(fakeUser.name)" : "Welcome",
+                      btnTitle: signedIn ? Constants.btnSignOut : Constants.btnLogin,
+                      enabled: exp.enabled,
+                      colors: colors)
     }
 
     private func getBodyItems(for section: HomepageBodySection) -> [BodyItem] {
         section.compactMap { exp in
             switch exp {
             case let hero as HomepageBodySection.Supported.Hero:
-                return BodyItem(id: exp.id,
-                                dataType: .url,
-                                data: hero.data.source)
+                return hero.enabled ? BodyItem(id: exp.id,
+                                               dataType: .hero,
+                                               data: hero.data.source) : nil
             case let banner as HomepageBodySection.Supported.Banner:
-                return BodyItem(id: exp.id,
-                                dataType: .text,
-                                data: banner.data.label)
+                return banner.enabled ? BodyItem(id: exp.id,
+                                                 dataType: .banner,
+                                                 data: banner.data.label) : nil
             default:
                 return nil
             }

@@ -11,6 +11,7 @@ import UIKit
 enum Styles {
 
     static let headerColor = UIColor(red: 170/255, green: 85/255, blue: 85/255, alpha: 1)
+    static let defaultGradient = [UIColor(hex: "#6F58C4"), UIColor(hex: "#6200EE")]
     static let bannerColor = UIColor(hex: "#F0EEF9")
     static let primaryBackground = UIColor(hex: "#6F58C4")
 }

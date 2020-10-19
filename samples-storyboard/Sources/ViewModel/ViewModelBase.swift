@@ -14,10 +14,8 @@ protocol ViewModelDelegate: AnyObject {
 
 class ViewModel {
 
-    var welcomeText: String = ""
-    var buttonTitle: String = ""
+    var header: Header = Header()
     var body: [BodyItem] = []
-    var headerColors: [UIColor?] = [Styles.headerColor, Styles.headerColor]
 
     weak var delegate: ViewModelDelegate?
 

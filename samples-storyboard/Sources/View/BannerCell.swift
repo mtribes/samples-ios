@@ -17,7 +17,7 @@ class BannerCell: UITableViewCell, ReusableCell {
     }
 
     func configure(_ item: BodyItem) {
-        guard item.dataType == .text,
+        guard item.dataType == .banner,
               let text = item.data as? String
         else { return }
         bannerButton.setTitle(text, for: .normal)

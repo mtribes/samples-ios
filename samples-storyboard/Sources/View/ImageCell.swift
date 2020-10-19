@@ -13,7 +13,7 @@ class ImageCell: UITableViewCell, ReusableCell {
     @IBOutlet weak var heroImage: UIImageView!
 
     func configure(_ item: BodyItem) {
-        guard item.dataType == .url else { return }
+        guard item.dataType == .hero else { return }
         let url = item.data as? URL
         heroImage.kf.indicatorType = .activity
         heroImage.kf.setImage(with: url)

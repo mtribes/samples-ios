@@ -87,7 +87,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="headerBackground" destination="iLu-tN-oJl" id="Bi9-13-R5h"/>
+                        <outlet property="headerView" destination="iLu-tN-oJl" id="LRr-sg-sTX"/>
                         <outlet property="signinButton" destination="3Da-VZ-15c" id="4BO-be-7YP"/>
                         <outlet property="tableView" destination="pl0-Sg-tpD" id="252-Vr-SWy"/>
                         <outlet property="welcomeText" destination="9pM-5n-ar3" id="DHh-5I-Eg8"/>
