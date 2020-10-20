@@ -49,7 +49,6 @@ class ViewController: UIViewController {
         coordinator.animate { _ in
             self.applyGradient(for: self.headerView, colors: self.viewModel.header.colors)
         }
-
     }
 
     private func updateUI() {

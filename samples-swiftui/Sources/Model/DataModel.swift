@@ -34,3 +34,28 @@ struct BodyItem: Identifiable {
     }
 }
 
+struct FakeData {
+    struct SignedIn {
+        static let header = Header(id: "0001",
+                                   title: "Hi Olivia",
+                                   btnTitle: Constants.btnSignOut,
+                                   enabled: true,
+                                   gradient: Styles.defaultGradient)
+        static let body = [
+            BodyItem(id: "image", dataType: .hero, data: Constants.imgUrlLogin),
+            BodyItem(id: "banner", dataType: .banner, data: Constants.bannerMember)
+        ]
+    }
+
+    struct Anonymous {
+        static let header = Header(id: "0001",
+                                   title: "Welcome",
+                                   btnTitle: Constants.btnLogin,
+                                   enabled: true,
+                                   gradient: Styles.defaultGradient)
+        static let body = [
+            BodyItem(id: "image", dataType: .hero, data: Constants.imgUrlSignOut),
+            BodyItem(id: "banner", dataType: .banner, data: Constants.bannerVisitor)
+        ]
+    }
+}

@@ -40,34 +40,25 @@ class ViewModel_Before: ViewModel {
 
     private func loginStatusChange(_ user: User?) {
         let signedIn = user != nil
-        header = signedIn ? .signedIn : .anonymous
-
-        let imageUrl = signedIn ? Constants.imgUrlLogin : Constants.imgUrlSignOut
-        let bannerMsg = signedIn ? Constants.bannerMember : Constants.bannerVisitor
-        body = [
-            BodyItem(id: "image", dataType: .hero, data: imageUrl),
-            BodyItem(id: "banner", dataType: .banner, data: bannerMsg)
-        ]
+        header = getHeader(signedIn: signedIn)
+        body = getBody(signedIn: signedIn)
 
         delegate?.didFinishLoading()
     }
-}
 
-private extension Header {
-
-    static var signedIn: Header {
-        return Header(id: "0001",
-                      title: "Hi Olivia",
-                      btnTitle: Constants.btnSignOut,
-                      enabled: true,
-                      colors: Styles.defaultGradient)
+    private func getHeader(signedIn: Bool) -> Header {
+        if signedIn {
+            return FakeData.SignedIn.header
+        } else {
+            return FakeData.Anonymous.header
+        }
     }
 
-    static var anonymous: Header {
-        return Header(id: "0001",
-                      title: "Welcome",
-                      btnTitle: Constants.btnLogin,
-                      enabled: true,
-                      colors: Styles.defaultGradient)
+    private func getBody(signedIn: Bool) -> [BodyItem] {
+        if signedIn {
+            return FakeData.SignedIn.body
+        } else {
+            return FakeData.Anonymous.body
+        }
     }
 }
