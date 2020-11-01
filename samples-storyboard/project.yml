@@ -1,0 +1,11 @@
+name: samples-storyboard
+options:
+  bundleIdPrefix: com.deltatre
+targets:
+  samples-storyboard:
+    sources: 
+      - ./Sources
+      - ./src
+    type: application
+    platform: iOS
+    deploymentTarget: "13.0"
