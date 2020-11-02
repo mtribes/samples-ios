@@ -1,10 +1,3 @@
-//
-//  ImageCell.swift
-//  samples-storyboard
-//
-//  Created by Leo Wang on 2/10/20.
-//
-
 import UIKit
 import Kingfisher
 
