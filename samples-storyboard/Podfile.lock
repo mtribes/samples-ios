@@ -2,7 +2,7 @@ PODS:
   - Kingfisher (5.15.0):
     - Kingfisher/Core (= 5.15.0)
   - Kingfisher/Core (5.15.0)
-  - Mtribes (0.3.0)
+  - Mtribes (0.3.1)
 
 DEPENDENCIES:
   - Kingfisher
@@ -16,8 +16,8 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
-  Mtribes: 55d996f095cb4cabed7a7a79d0a3ead7ae2c8767
+  Mtribes: fdb545027383e60fe98605031b029768f4a955dd
 
 PODFILE CHECKSUM: bfdeb63afa479b5b7b9d2746165ef796d6c24e5c
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
