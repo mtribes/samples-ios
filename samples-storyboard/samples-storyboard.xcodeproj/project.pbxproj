@@ -398,8 +398,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deltatre.mtribes.sample;
-				PROVISIONING_PROFILE_SPECIFIER = "Mtribes sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deltatre.mtribes.sample.app;
+				PROVISIONING_PROFILE_SPECIFIER = "mtribes sample app";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -471,8 +471,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.deltatre.mtribes.sample;
-				PROVISIONING_PROFILE_SPECIFIER = "Mtribes sample";
+				PRODUCT_BUNDLE_IDENTIFIER = com.deltatre.mtribes.sample.app;
+				PROVISIONING_PROFILE_SPECIFIER = "mtribes sample app";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
