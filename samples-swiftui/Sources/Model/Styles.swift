@@ -12,7 +12,7 @@ enum Styles {
 // https://stackoverflow.com/a/56874327/11727285
 extension Color {
 
-    init(hex: String, opacity: Double? = nil) {
+    init(hex: String, opacity: CGFloat? = nil) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
@@ -33,7 +33,7 @@ extension Color {
             red: Double(r) / 255,
             green: Double(g) / 255,
             blue:  Double(b) / 255,
-            opacity: opacity ?? Double(a) / 255
+            opacity: Double(opacity ?? CGFloat(a) / 255) 
         )
     }
 }
