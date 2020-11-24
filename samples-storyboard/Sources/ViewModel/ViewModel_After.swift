@@ -95,7 +95,7 @@ class ViewModel_After: ViewModel {
 extension MTColor {
 
     var uiColor: UIColor? {
-        let alpha: CGFloat = CGFloat(opacity ?? 1)
+        let alpha: CGFloat = CGFloat(opacity)
         guard let hex = value else { return nil }
         return UIColor(hex: hex, alpha: alpha)
     }
