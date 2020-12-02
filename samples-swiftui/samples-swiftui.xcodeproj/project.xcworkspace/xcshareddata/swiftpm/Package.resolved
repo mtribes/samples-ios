@@ -2,12 +2,21 @@
   "object": {
     "pins": [
       {
-        "package": "URLImage",
-        "repositoryURL": "https://github.com/dmytro-anokhin/url-image.git",
+        "package": "Mtribes",
+        "repositoryURL": "https://github.com/mtribes/client-ios.git",
         "state": {
           "branch": null,
-          "revision": "22eca5ee4f317e0283da75426849ee23f0516022",
-          "version": "0.9.19"
+          "revision": "3ab6968959ea40a18d534149c1f725c7957a0b11",
+          "version": "0.4.0"
+        }
+      },
+      {
+        "package": "Kingfisher",
+        "repositoryURL": "https://github.com/onevcat/Kingfisher.git",
+        "state": {
+          "branch": null,
+          "revision": "0e548b700c7c123dd3b2ac776e90d63a540f084d",
+          "version": "5.15.7"
         }
       }
     ]
