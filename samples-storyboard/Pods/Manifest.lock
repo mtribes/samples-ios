@@ -1,0 +1,22 @@
+PODS:
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
+  - Mtribes (0.4.0)
+
+DEPENDENCIES:
+  - Kingfisher
+  - Mtribes
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - Mtribes
+
+SPEC CHECKSUMS:
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
+  Mtribes: 995d0eb84ace19931630f7a219beda8c869a571e
+
+PODFILE CHECKSUM: bfdeb63afa479b5b7b9d2746165ef796d6c24e5c
+
+COCOAPODS: 1.10.0
